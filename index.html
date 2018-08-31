@@ -246,47 +246,22 @@
     </tr>
 
 </table>
-
-<div class="divDeTete">
-
-    <div>
-
-        <div></div>
-
-        <div></div>
-    </div>
-
-    <div>
-
-
-
-    </div>
-
-
-    <div>
-
-
-    </div>
-
-</div>
-
-
-<div>
-
-</div>
-
-<div>
-
-</div>
-
-
-<div>
-
-</div>
-
+<br>
 
 <button onclick="creeHoraire()">Créer horaire</button>
 <button onclick="htmlToImage()">Transformer en image</button>
+
+
+
+<p id="pet">
+caca
+</p>
+
+
+
+<p id="demo"></p>
+
+
 
 
 
@@ -302,10 +277,62 @@
   ];
 
   var cases = new Array(6);
+  var value;
+
+var myObj, x;
+ myObj = {
+    "name":"John",
+    "age":30,
+    "cars":[ "Ford", "BMW", "Fiat" ]
+};
+
+
+x = myObj.cars[0];
+document.getElementById("demo").innerHTML = x;
+
+
 
 
   recueilleCases();
 
+  var cours = {
+    "PHS3210": {
+      "groupe": "0D",
+      "local": "DEPART.",
+      "type": "Cours",
+      "heure": "18h00",
+      "titre": "Spectroscopie",
+      "enseignant": "Francoeur Sebastien",
+      "jour": "Vendredi",
+      "duree": 1,
+      "credits": 3
+    },
+    "MIN3994": {
+      "groupe": "01",
+      "local": "DEPART.",
+      "type": "Cours",
+      "heure": "17h45",
+      "titre": "Projet integrateur III",
+      "enseignant": "Simon Richard",
+      "jour": "Vendredi",
+      "duree": 1,
+      "credits": 2
+    },
+    "ELE3000": {
+      "groupe": "01",
+      "local": "L-5654",
+      "type": "Cours",
+      "heure": "16h45",
+      "titre": "Projet personnel en genie electrique",
+      "enseignant": " ",
+      "jour": "Lundi",
+      "duree": 1,
+      "credits": 3
+    }
+  };
+
+
+  document.getElementById("pet").innerText = "ELE3000" + cours["ELE3000"].titre +cours["ELE3000"].groupe;
 
   function recueilleCases() {
             var table = document.getElementById("table");
@@ -347,9 +374,6 @@
 
   }
 
-
-
-
   function htmlToImage () {
 
       var node= document.getElementsByTagName("body")[0];
@@ -373,8 +397,6 @@ rasterizeHTML.drawHTML(node.outerHTML, canvas)
             }
      });
   }
-
-
 
   function dessineCaseHoraire(sigle, groupe, local, jour, plageHoraire, duree, couleur) {
 
@@ -409,7 +431,6 @@ rasterizeHTML.drawHTML(node.outerHTML, canvas)
       cases[y][x].innerHTML = sigle;
       cases[y][x].className += " sigleCours couleur1 casesHoraire";
   }
-
   function EcrireGroupe(groupe, x, y) {
       cases[y][x].innerHTML = groupe;
       cases[y][x].className += " couleur1 groupe";
@@ -429,7 +450,6 @@ rasterizeHTML.drawHTML(node.outerHTML, canvas)
       }
   }
 
-
   function BordureBas(x,y) {
       cases[y][x].style.borderBottom = "solid #353535";
       cases[y][x].style.borderBottomWidth = "2px";
@@ -438,7 +458,7 @@ rasterizeHTML.drawHTML(node.outerHTML, canvas)
       cases[y][x].style.borderTop = "solid #353535";
       cases[y][x].style.borderTopWidth = "2px";
   }
-    function BordureCotes(x,y, duree) {
+  function BordureCotes(x,y, duree) {
 
         for(i = 0; i < duree; i++){
             cases[y+i][x].style.borderLeft = "solid #353535";
@@ -449,7 +469,26 @@ rasterizeHTML.drawHTML(node.outerHTML, canvas)
   }
 
 
-//  <img src="../Downloads/2810a82ee2b073da5276d7c272b23f98.jpg"/>
+
+
+
+
+  function readFile(file) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4) {
+            if(rawFile.status === 200 || rawFile.status == 0) {
+              var allText = rawFile.responseText;
+              value = JSON.stringify;
+                // now display on browser :)
+            }
+        }
+    }
+    rawFile.send(null);
+}
+
 
 
 </script>
